@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Backend · GitHub Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" class="logo" aria-hidden><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <div>
+          <h1>GH Manager</h1>
+          <p class="muted">Backend dashboard</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="dashboard">Dashboard</button>
+        <button class="nav-item" data-view="repos">Repositories</button>
+        <button class="nav-item" data-view="issues">Issues</button>
+        <button class="nav-item" data-view="prs">Pull Requests</button>
+        <button class="nav-item" data-view="actions">Actions</button>
+        <button class="nav-item" data-view="settings">Settings</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">User: <strong id="userLogin">guest</strong></small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <input id="globalSearch" type="search" placeholder="Search repos, issues, PRs…" />
+        </div>
+        <div class="top-actions">
+          <button id="btnSync" class="btn">Sync</button>
+          <div class="avatar">V</div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div id="dashboardView" class="view">
+          <div class="cards">
+            <div class="card">
+              <h3 id="totalRepos">0</h3>
+              <p class="muted">Repositories</p>
+            </div>
+            <div class="card">
+              <h3 id="openIssues">0</h3>
+              <p class="muted">Open Issues</p>
+            </div>
+            <div class="card">
+              <h3 id="openPRs">0</h3>
+              <p class="muted">Open PRs</p>
+            </div>
+            <div class="card">
+              <h3 id="lastSync">—</h3>
+              <p class="muted">Last sync</p>
+            </div>
+          </div>
+
+          <div class="split">
+            <div class="panel">
+              <div class="panel-header">
+                <h2>Repositories</h2>
+                <select id="repoFilter">
+                  <option value="">All</option>
+                  <option value="starred">Starred</option>
+                  <option value="forked">Forks</option>
+                </select>
+              </div>
+              <div class="table-wrap">
+                <table id="repoTable" class="table">
+                  <thead>
+                    <tr>
+                      <th>Repository</th>
+                      <th>Stars</th>
+                      <th>Issues</th>
+                      <th>PRs</th>
+                      <th>Updated</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <aside class="panel details" id="repoDetails">
+              <div class="panel-header">
+                <h2 id="detailsTitle">Select a repository</h2>
+                <div class="actions">
+                  <button id="btnNewIssue" class="btn btn-primary">New Issue</button>
+                  <button id="btnOpenInGithub" class="btn">Open</button>
+                </div>
+              </div>
+
+              <div id="detailsBody" class="details-body muted">
+                Select a repository on the left to see issues, PRs, and recent activity.
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Other views placeholders, kept minimal for this design -->
+        <div id="reposView" class="view hidden">
+          <h2>Repositories</h2>
+          <p class="muted">Detailed repos view (use the Dashboard for quick access).</p>
+        </div>
+
+        <div id="issuesView" class="view hidden">
+          <h2>Issues</h2>
+          <p class="muted">Issues list & filters.</p>
+        </div>
+
+        <div id="prsView" class="view hidden">
+          <h2>Pull Requests</h2>
+          <p class="muted">PRs and review status.</p>
+        </div>
+
+        <div id="actionsView" class="view hidden">
+          <h2>Actions</h2>
+          <p class="muted">Workflows, runs, and logs.</p>
+        </div>
+
+        <div id="settingsView" class="view hidden">
+          <h2>Settings</h2>
+          <p class="muted">Connect tokens, configure webhooks, backend endpoints.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
