@@ -87,7 +87,7 @@ body{
 
 .table tbody tr{cursor:pointer}
 .table tbody tr:hover{background:rgba(255,255,255,0.02)}
-.muted{color:var(--muted)}
+
 
 .details-body{font-size:13px;line-height:1.4}
 .actions{display:flex;gap:8px;align-items:center}
